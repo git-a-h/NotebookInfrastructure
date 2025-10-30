@@ -1,9 +1,8 @@
----
-Workflow triggered by Push and Pull Request 
 
----
+name: CI/CD Pipeline
+
 on:
-  [push,pull_request]:
+  [push,pull_request]
 
 jobs:
   install:
@@ -18,8 +17,12 @@ jobs:
           cache-environment: true
           cache-downloads: true
       - name: run tests and create coverage report
-        run: make tests
-      - name: create coverage report
+        run: make test
+      - name: upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: htmlcov
           
 
       
