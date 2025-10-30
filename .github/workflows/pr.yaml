@@ -16,6 +16,8 @@ jobs:
           environment-file: environment.yml
           cache-environment: true
           cache-downloads: true
+      - name: Test to see if the environment is set up correctly
+        run: micromamba activate rse_seminar
       - name: run tests and create coverage report
         run: make test
       - name: upload coverage report
