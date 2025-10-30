@@ -1,0 +1,28 @@
+---
+Workflow triggered by Push and Pull Request 
+
+---
+on:
+  [push,pull_request]:
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Micromamba, create and activate environment
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-file: environment.yml
+          cache-environment: true
+          cache-downloads: true
+      - name: run tests and create coverage report
+        run: make tests
+      - name: create coverage report
+          
+
+      
+
+
+
