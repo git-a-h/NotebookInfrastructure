@@ -4,3 +4,6 @@ __pycache__
 
 # ignore macOS system files :/
 .DS_Store
+
+# ignore coverage
+.coverage
