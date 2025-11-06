@@ -1,0 +1,5 @@
+name: rse_seminar
+channels:
+  - conda-forge
+dependencies:
+  - pytest-cov

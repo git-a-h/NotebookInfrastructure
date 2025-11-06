@@ -7,10 +7,10 @@ For the first two tasks, the pySDC repository can serve as a reference. Ultimate
 
 
 ## Task 1: Familiarize yourself with the local testing environment
- - [ ] Set up an empty virtual environment with micromamba. Add all dependencies you subsequently need to an environment file to make future setup seamless.
- - [ ] Set up a toy code that needs testing and a tutorial. This should be simple. For instance, just a basic add function.
- - [ ] Set up a unit test for the code using pytest. E.g. does 1+1=2? 
- - [ ] Generate a coverage report for the toy code
+ - [x] Set up an empty virtual environment with micromamba. Add all dependencies you subsequently need to an environment file to make future setup seamless.
+ - [x] Set up a toy code that needs testing and a tutorial. This should be simple. For instance, just a basic add function.
+ - [x] Set up a unit test for the code using pytest. E.g. does 1+1=2? 
+ - [x] Generate a coverage report for the toy code
 
 ## Task 2: Familiarize yourself with GitHub Continuous Integration (CI)
  - [ ] Create a GitHub workflow
