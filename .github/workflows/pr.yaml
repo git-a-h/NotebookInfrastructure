@@ -1,0 +1,30 @@
+
+name: CI/CD Pipeline
+
+on:
+  [push,pull_request]
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Micromamba, create and activate environment
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-file: environment.yml
+          cache-environment: true
+          cache-downloads: true
+      - name: grep environment name from environment.yml
+        id: environment_name
+        run: echo env_name=$(grep '^name:' environment.yml | awk '{print $2}')" >> "$GITHUB_OUTPUT"
+      - name: Test if environment is created
+        run: micromamba env list | grep ${{ steps.environment_name.outputs.env_name }}
+      - name: Run tests with coverage
+        run: micromamba run -n ${{ steps.environment_name.outputs.env_name }} pytest --cov --cov-report=html tests/
+      - name: upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: htmlcov
