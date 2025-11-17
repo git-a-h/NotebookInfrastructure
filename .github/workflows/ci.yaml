@@ -5,7 +5,23 @@ on:
   [push,pull_request]
 
 jobs:
-  install:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Micromamba and create and activate environment
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-file: etc/environment-lint.yml
+          cache-environment: true
+          cache-downloads: true
+      - name: Run Black to check code formatting
+        run: black src/ tests/ --check 
+      - name: Run Ruff to check for linting issues
+        run: ruff check src/ tests/
+        
+  run-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -13,7 +29,7 @@ jobs:
       - name: Install Micromamba, create and activate environment
         uses: mamba-org/setup-micromamba@v2
         with:
-          environment-file: environment.yml
+          environment-file: etc/environment-tests.yml
           cache-environment: true
           cache-downloads: true
       - name: Test to see if the environment is set up correctly
