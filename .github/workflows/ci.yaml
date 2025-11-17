@@ -17,7 +17,6 @@ jobs:
           environment-file: etc/environment-lint.yml
           cache-environment: true
           cache-downloads: true
-        shell: micromamba-shell {0}
       - name: Run Black to check code formatting
         run: |
           black src/ tests/ --check 
