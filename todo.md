@@ -13,12 +13,12 @@ For the first two tasks, the pySDC repository can serve as a reference. Ultimate
  - [x] Generate a coverage report for the toy code
 
 ## Task 2: Familiarize yourself with GitHub Continuous Integration (CI)
- - [ ] Create a GitHub workflow
- - [ ] Create a task in the workflow that ...
-  - [ ] is triggered on push and pull requests
-  - [ ] initializes a virtual environment with micromamba, replicating your local environment
-  - [ ] runs the pytest unit tests
-  - [ ] creates an artifact with a coverage report
+ - [x] Create a GitHub workflow
+ - [x] Create a task in the workflow that ...
+  - [x] is triggered on push and pull requests
+  - [x] initializes a virtual environment with micromamba, replicating your local environment
+  - [x] runs the pytest unit tests
+  - [x] creates an artifact with a coverage report
 
 ## Task 3: Familiarize yourself with notebooks
  - [ ] Look for alternatives to Jupyter notebooks for interactive testing. Have a look at the Firedrake repository. What are pros and cons of various approaches? Do this before committing to notebooks. Subsequently, "notebook" will refer to whatever proved to be best.

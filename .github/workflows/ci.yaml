@@ -1,0 +1,49 @@
+
+name: CI/CD Pipeline
+
+on:
+  [push,pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Micromamba and create and activate environment
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          generate-run-shell: true
+          environment-file: etc/environment-lint.yml
+          cache-environment: true
+          cache-downloads: true
+      - name: Run Black to check code formatting
+        run: |
+          black src/ tests/ --check 
+        shell: micromamba-shell {0}
+      - name: Run Ruff to check for linting issues
+        run: |
+          ruff check src/ tests/
+        shell: micromamba-shell {0}
+
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Micromamba, create and activate environment
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          generate-run-shell: true
+          environment-file: etc/environment-tests.yml
+          cache-environment: true
+          cache-downloads: true
+      - name: Run Tests with Coverage
+        run: |
+          pytest --cov --cov-report=html tests/
+        shell: micromamba-shell {0}
+      - name: upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: htmlcov
