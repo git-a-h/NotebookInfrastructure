@@ -26,7 +26,7 @@ For the first two tasks, the pySDC repository can serve as a reference. Ultimate
  - [x] Generate a jupyter notebook from the python file using Jupytext which shows the output of the code. Do not check the notebook into git. We only want the plain text python file in version control.
 
 ## Task 4: Write local tests for notebooks
- - [ ] Write an automatable smoke test for the tutorial. Try simply importing the tutorial python file, which should run all code in that file, in a test.
+ - [x] Write an automatable smoke test for the tutorial. Try simply importing the tutorial python file, which should run all code in that file, in a test.
 
 ## Task 5: Implement the notebook tests in the GitHub CI
  - [ ] Add a task running the tutorial tests in parallel to the unit tests
