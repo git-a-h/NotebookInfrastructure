@@ -54,4 +54,5 @@ jobs:
       - name: upload notebook artifact
         uses: actions/upload-artifact@v4
         with:
-          name: src/step_3/notebook.ipynb
+          name: notebook.ipynb
+          path: src/step_3/notebook.ipynb
