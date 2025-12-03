@@ -50,6 +50,7 @@ jobs:
       - name: create notebook 
         run: |
           jupytext --to ipynb --execute src/step_3/notebook.py
+        shell: micromamba-shell {0}
       - name: upload notebook artifact
         uses: actions/upload-artifact@v4
         with:
