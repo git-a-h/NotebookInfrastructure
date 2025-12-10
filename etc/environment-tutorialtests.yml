@@ -1,4 +1,4 @@
-name: rse_seminar
+name: tutorial_tests_env
 channels:
   - conda-forge
 dependencies:
