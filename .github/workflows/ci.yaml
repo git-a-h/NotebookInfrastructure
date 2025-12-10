@@ -26,7 +26,7 @@ jobs:
           ruff check src/ tests/ 
         shell: micromamba-shell {0}
 
-  run-tests:
+  run-unit-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -35,15 +35,46 @@ jobs:
         uses: mamba-org/setup-micromamba@v2
         with:
           generate-run-shell: true
-          environment-file: etc/environment-tests.yml
+          environment-file: etc/environment-unittests.yml
           cache-environment: true
           cache-downloads: true
       - name: Run Tests with Coverage
         run: |
-          pytest --cov --cov-report=html tests/
+          pytest --cov --cov-report=html tests/unit
         shell: micromamba-shell {0}
       - name: upload coverage report
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: htmlcov
+
+  run-smoke-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Micromamba, create and activate environment
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          generate-run-shell: true
+          environment-file: etc/environment-tutorialtests.yml
+          cache-environment: true
+          cache-downloads: true
+      - name: Run Tests with Coverage
+        run: |
+          pytest --cov --cov-report=html tests/tutorial
+        shell: micromamba-shell {0}
+      - name: upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: htmlcov
+      - name: create notebook 
+        run: |
+          jupytext --to ipynb --execute src/step_3/notebook.py
+        shell: micromamba-shell {0}
+      - name: upload notebook artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: notebook.ipynb
+          path: src/step_3/notebook.ipynb
