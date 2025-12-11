@@ -45,7 +45,6 @@ jobs:
         with:
           path: ./.unit-coverage
           key: unit-tests-coverage-report-${{ github.run_id }}
-          restore-keys: unit-tests-coverage-report-
 
   run-smoke-tests:
     runs-on: ubuntu-latest
@@ -66,7 +65,6 @@ jobs:
         with:
           path: ./.tutorial-coverage
           key: tutorial-tests-coverage-report-${{ github.run_id }}
-          restore-keys: tutorial-tests-coverage-report-
       - name: create notebook 
         run: |
           jupytext --to ipynb --execute src/step_3/notebook.py
