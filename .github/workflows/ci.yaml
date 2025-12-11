@@ -45,7 +45,7 @@ jobs:
         with:
           path: ./.unit-coverage
           key: unit-tests-coverage-report-${{ github.run_id }}
-          restore-key: unit-tests-coverage-report-
+          restore-keys: unit-tests-coverage-report-
 
   run-smoke-tests:
     runs-on: ubuntu-latest
@@ -66,7 +66,7 @@ jobs:
         with:
           path: ./.tutorial-coverage
           key: tutorial-tests-coverage-report-${{ github.run_id }}
-          restore-key: tutorial-tests-coverage-report-
+          restore-keys: tutorial-tests-coverage-report-
       - name: create notebook 
         run: |
           jupytext --to ipynb --execute src/step_3/notebook.py
@@ -94,14 +94,14 @@ jobs:
       with:
         path: ./.unit-coverage
         key: unit-tests-coverage-report-${{ github.run_id }}
-        restore-key: unit-tests-coverage-report-
+        restore-keys: unit-tests-coverage-report-
     - name: Restore tutorial tests coverage report from cache
       id: cache-tutorial-tests
       uses: actions/cache/restore@v4
       with:
         path: ./.tutorial-coverage
         key: tutorial-tests-coverage-report-${{ github.run_id }}
-        restore-key: tutorial-tests-coverage-report-
+        restore-keys: tutorial-tests-coverage-report-
     - name: Combine coverage reports
       if: steps.cache-unit-tests.outputs.cache-hit == 'true' && steps.cache-tutorial-tests.outputs.cache-hit == 'true'
       run: |
