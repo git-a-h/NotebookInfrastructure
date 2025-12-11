@@ -93,6 +93,7 @@ jobs:
         path: ./.unit-coverage
         key: unit-tests-coverage-report-${{ github.run_id }}
         restore-keys: unit-tests-coverage-report-
+        fail-on-cache-miss: true
     - name: Restore tutorial tests coverage report from cache
       id: cache-tutorial-tests
       uses: actions/cache/restore@v4
@@ -100,6 +101,7 @@ jobs:
         path: ./.tutorial-coverage
         key: tutorial-tests-coverage-report-${{ github.run_id }}
         restore-keys: tutorial-tests-coverage-report-
+        fail-on-cache-miss: true
     - name: Combine coverage reports
       if: steps.cache-unit-tests.outputs.cache-hit == 'true' && steps.cache-tutorial-tests.outputs.cache-hit == 'true'
       run: |
