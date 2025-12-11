@@ -45,7 +45,7 @@ jobs:
       - name: upload coverage report to cache 
         uses: actions/cache@v4
         with:
-          path: .unit-coverage/
+          path: ./.unit-coverage
           key: unit-tests-coverage-report
 
   run-smoke-tests:
@@ -67,7 +67,7 @@ jobs:
       - name: upload coverage report to cache 
         uses: actions/cache@v4
         with:
-          path: .tutorial-coverage
+          path: ./.tutorial-coverage
           key: tutorial-tests-coverage-report
       - name: create notebook 
         run: |
@@ -95,12 +95,12 @@ jobs:
     - name: Restore unit tests coverage report from cache
       uses: actions/cache/restore@v4
       with:
-        path: .unit-coverage/
+        path: .unit-coverage
         key: unit-tests-coverage-report
     - name: Restore tutorial tests coverage report from cache
       uses: actions/cache/restore@v4
       with:
-        path: .tutorial-coverage/
+        path: .tutorial-coverage
         key: tutorial-tests-coverage-report
     - name: Combine coverage reports
       run: |
