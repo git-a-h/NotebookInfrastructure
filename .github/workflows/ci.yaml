@@ -15,8 +15,6 @@ jobs:
         with:
           generate-run-shell: true
           environment-file: etc/environment-lint.yml
-          cache-environment: true
-          cache-downloads: true
       - name: Run Black to check code formatting
         run: |
           black src/ tests/ --check 
@@ -58,8 +56,6 @@ jobs:
         with:
           generate-run-shell: true
           environment-file: etc/environment-tutorialtests.yml
-          cache-environment: true
-          cache-downloads: true
       - name: Run Tests with Coverage
         run: |
           COVERAGE_FILE=.tutorial-coverage pytest --cov=src --cov=tests/tutorial tests/tutorial
@@ -90,8 +86,6 @@ jobs:
       with:
         generate-run-shell: true
         environment-file: etc/environment-coverage-reports.yml
-        cache-environment: true
-        cache-downloads: true
     - name: Restore unit tests coverage report from cache
       id: cache-unit-tests
       uses: actions/cache/restore@v4
