@@ -1,0 +1,5 @@
+name: coverage-reports_env
+channels:
+  - conda-forge
+dependencies:
+  - coverage

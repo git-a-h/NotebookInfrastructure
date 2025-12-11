@@ -85,6 +85,13 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
+    - name: Install Micromamba, create and activate environment
+      uses: mamba-org/setup-micromamba@v2
+      with:
+        generate-run-shell: true
+        environment-file: etc/environment-coverage-reports.yml
+        cache-environment: true
+        cache-downloads: true
     - name: Restore unit tests coverage report from cache
       uses: actions/cache/restore@v4
       with:
@@ -99,6 +106,7 @@ jobs:
       run: |
         coverage combine .tutorial-coverage .unit-coverage
         coverage html
+      shell: micromamba-shell {0}
     - name: Upload coverage report artifact
       uses: actions/upload-artifact@v4
       with:
