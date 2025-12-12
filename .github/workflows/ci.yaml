@@ -75,6 +75,9 @@ jobs:
   combine-coverage-reports:
     runs-on: ubuntu-latest
     needs: [run-unit-tests, run-smoke-tests]
+    env:
+      UNIT_TEST_COVERAGE_REPORT: ${{ needs.run-unit-tests.outputs.unit-test-coverage-report}}
+      TUTORIAL_TEST_COVERAGE_REPORT: ${{ needs.run-smoke-tests.outputs.tutorial-test-coverage-report}}
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
@@ -84,14 +87,10 @@ jobs:
         generate-run-shell: true
         environment-file: etc/environment-coverage-reports.yml
     - name: Download unit tests coverage report 
-      env:
-        UNIT_TEST_COVERAGE_REPORT: ${{ needs.run-unit-tests.outputs.unit-test-coverage-report}}
       uses: actions/download-artifact@v5
       with:
         artifacts-ids: ${{ env.UNIT_TEST_COVERAGE_REPORT }}
     - name: Download tutorial tests coverage report 
-      env:
-          TUTORIAL_TEST_COVERAGE_REPORT: ${{ needs.run-smoke-tests.outputs.tutorial-test-coverage-report}}
       with:
         artifacts-ids: ${{ env.TUTORIAL_TEST_COVERAGE_REPORT }}
     - name: Combine coverage reports
