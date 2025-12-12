@@ -33,6 +33,11 @@ For the first two tasks, the pySDC repository can serve as a reference. Ultimate
  - [x] Create an artifact with the merged coverage report
  - [x] Generate the notebooks in CI and output them as an artifact
 
+## Task 6: Automatically generate all notebooks 
+ - [ ] Write a script / command that scans a directory for .py files that contain '# %% [markdown]' 
+ - [ ] Generate the notebooks in CI and output them as an artifact
+
+
 ## Task 6: Add MPI parallelism
  - [ ] Add a parallel module to your toy code. E.g. parallel sum
  - [ ] Test locally using multiple MPI ranks
