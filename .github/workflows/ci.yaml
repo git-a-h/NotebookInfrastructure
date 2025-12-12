@@ -91,6 +91,7 @@ jobs:
       with:
         artifacts-ids: ${{ env.UNIT_TEST_COVERAGE_REPORT }}
     - name: Download tutorial tests coverage report 
+      uses: actions/download-artifact@v5
       with:
         artifacts-ids: ${{ env.TUTORIAL_TEST_COVERAGE_REPORT }}
     - name: Combine coverage reports
