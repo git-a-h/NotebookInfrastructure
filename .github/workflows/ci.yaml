@@ -26,6 +26,8 @@ jobs:
 
   run-unit-tests:
     runs-on: ubuntu-latest
+    outputs:
+      unit-test-coverage-report: ${{ steps.upload-unit-coverage.outputs.artifact-id }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -40,14 +42,17 @@ jobs:
         run: |
           COVERAGE_FILE=.unit-coverage pytest --cov=src --cov=tests/unit tests/unit
         shell: micromamba-shell {0}
-      - name: upload coverage report to cache 
-        uses: actions/cache/save@v4
+      - name: Upload coverage report artifact
+        id: upload-unit-coverage
+        uses: actions/upload-artifact@v4
         with:
+          name: unit-tests-coverage-report
           path: ./.unit-coverage
-          key: unit-tests-coverage-report-${{ github.run_id }}
 
   run-smoke-tests:
     runs-on: ubuntu-latest
+    outputs:
+      tutorial-test-coverage-report: ${{ steps.upload-tutorial-coverage.outputs.artifact-id }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -60,25 +65,20 @@ jobs:
         run: |
           COVERAGE_FILE=.tutorial-coverage pytest --cov=src --cov=tests/tutorial tests/tutorial
         shell: micromamba-shell {0}
-      - name: upload coverage report to cache 
-        uses: actions/cache/save@v4
-        with:
-          path: ./.tutorial-coverage
-          key: tutorial-tests-coverage-report-${{ github.run_id }}
-      - name: create notebook 
-        run: |
-          jupytext --to ipynb --execute src/step_3/notebook.py
-        shell: micromamba-shell {0}
-      - name: upload notebook artifact
+      - name: Upload coverage report artifact
+        id: upload-tutorial-coverage
         uses: actions/upload-artifact@v4
         with:
-          name: notebook.ipynb
-          path: src/step_3/notebook.ipynb
+          name: tutorial-coverage-report
+          path: ./.tutorial-coverage
     
   combine-coverage-reports:
     runs-on: ubuntu-latest
     needs: [run-unit-tests, run-smoke-tests]
     steps:
+    - env:
+        UNIT_TEST_COVERAGE_REPORT: ${{ needs.run-unit-tests.outputs.unit-test-coverage-report}}
+        TUTORIAL_TEST_COVERAGE_REPORT: ${{ needs.run-smoke-tests.outputs.tutorial-test-coverage-report}}
     - name: Checkout Repository
       uses: actions/checkout@v4
     - name: Install Micromamba, create and activate environment
@@ -86,22 +86,13 @@ jobs:
       with:
         generate-run-shell: true
         environment-file: etc/environment-coverage-reports.yml
-    - name: Restore unit tests coverage report from cache
-      id: cache-unit-tests
-      uses: actions/cache/restore@v4
+    - name: Download unit tests coverage report 
+      uses: actions/download-artifact@v5
       with:
-        path: ./.unit-coverage
-        key: unit-tests-coverage-report-${{ github.run_id }}
-        restore-keys: unit-tests-coverage-report-
-        fail-on-cache-miss: true
-    - name: Restore tutorial tests coverage report from cache
-      id: cache-tutorial-tests
-      uses: actions/cache/restore@v4
+        artifacts-ids: ${{ env.UNIT_TEST_COVERAGE_REPORT }}
+    - name: Download tutorial tests coverage report 
       with:
-        path: ./.tutorial-coverage
-        key: tutorial-tests-coverage-report-${{ github.run_id }}
-        restore-keys: tutorial-tests-coverage-report-
-        fail-on-cache-miss: true
+        artifacts-ids: ${{ env.TUTORIAL_TEST_COVERAGE_REPORT }}
     - name: Combine coverage reports
       if: steps.cache-unit-tests.outputs.cache-hit == 'true' && steps.cache-tutorial-tests.outputs.cache-hit == 'true'
       run: |
