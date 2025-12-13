@@ -28,6 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       unit-test-coverage-report: ${{ steps.upload-unit-coverage.outputs.artifact-id }}
+    needs:
+      - lint
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -54,6 +56,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       tutorial-test-coverage-report: ${{ steps.upload-tutorial-coverage.outputs.artifact-id }}
+    needs:
+      - lint
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -73,6 +77,25 @@ jobs:
           name: tutorial-coverage-report
           path: .tutorial-coverage
           include-hidden-files: true
+  upload-notebooks:
+    runs-on: ubuntu-latest
+    needs: [run-smoke-tests]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Micromamba, create and activate environment
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          generate-run-shell: true
+          environment-file: etc/environment-notebook.yml
+      - name: Convert notebooks via jupytext in script
+        run: |
+          python3 scripts/convert_notebooks.py
+        shell: micromamba-shell {0}
+      - name: Upload converted notebook scripts
+        uses: actions/upload-artifact@v4
+        with:
+          name: converted-notebook-scripts
     
   combine-coverage-reports:
     runs-on: ubuntu-latest

@@ -3,7 +3,4 @@ channels:
   - conda-forge
 dependencies:
   - pytest-cov
-  - jupytext
-  - notebook
-  - ipykernel
   - matplotlib
