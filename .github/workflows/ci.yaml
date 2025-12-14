@@ -95,7 +95,7 @@ jobs:
       - name: Upload converted notebook scripts
         uses: actions/upload-artifact@v4
         with:
-          name: converted-notebook-scripts
+          name: converted-notebook
           path: src/**/*.ipynb
     
   combine-coverage-reports:

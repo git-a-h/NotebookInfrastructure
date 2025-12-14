@@ -28,13 +28,6 @@ def create_notebooks(target_dir: str) -> list[str]:
     return notebooks_converted
 
 
-"""def write_to_file(notebooks_converted: list[str])-> None:
-    Write the converted notebooks to a file for later use in CI/CD pipeline, with line break as delimiter
-    current_dir = pathlib.Path(__file__).parent.resolve()
-    with open (os.path.join(current_dir, 'output', 'notebooks_converted.txt'),'w') as f:
-        for notebook in notebooks_converted:
-            f.write(f'{notebook}\n')"""
-
 if __name__ == "__main__":
     print(
         "This script should collect all .py files that should be converted to notebooks"
@@ -44,4 +37,3 @@ if __name__ == "__main__":
     )
     target_dir = sys.argv[1] if len(sys.argv) > 1 else "src"
     notebooks_converted = create_notebooks(target_dir)
-    # write_to_file(notebooks_converted)
