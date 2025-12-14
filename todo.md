@@ -31,7 +31,7 @@ For the first two tasks, the pySDC repository can serve as a reference. Ultimate
 ## Task 5: Implement the notebook tests in the GitHub CI
  - [x] Add a task running the tutorial tests in parallel to the unit tests
  - [x] Create an artifact with the merged coverage report
- - [ ] Write a script / command that scans a directory for .py files that contain '# %% [markdown]' 
+ - [x] Write a script / command that scans a directory for .py files with prefix notebook*.py 
  - [x] Generate the notebooks in CI and output them as an artifact
 
 ## Task 6: Add MPI parallelism
