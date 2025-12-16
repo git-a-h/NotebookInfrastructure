@@ -88,14 +88,14 @@ jobs:
         with:
           generate-run-shell: true
           environment-file: etc/environment-notebook.yml
-      - name: Convert notebooks via jupytext in script
+      - name: Convert and move notebooks via script
         run: |
           python3 scripts/move_notebooks.py
         shell: micromamba-shell {0}
-      - name: Upload converted notebook scripts
+      - name: Upload converted notebook directory as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: converted-notebook
+          name: converted-notebooks
           path: notebooks/
     
   combine-coverage-reports:
@@ -128,5 +128,5 @@ jobs:
     - name: Upload coverage report artifact
       uses: actions/upload-artifact@v4
       with:
-        name: coverage-report
+        name: combined-coverage-report
         path: htmlcov/
