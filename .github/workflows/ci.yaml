@@ -90,13 +90,13 @@ jobs:
           environment-file: etc/environment-notebook.yml
       - name: Convert notebooks via jupytext in script
         run: |
-          python3 scripts/convert_notebooks.py
+          python3 scripts/move_notebooks.py
         shell: micromamba-shell {0}
       - name: Upload converted notebook scripts
         uses: actions/upload-artifact@v4
         with:
           name: converted-notebook
-          path: src/**/*.ipynb
+          path: notebooks/
     
   combine-coverage-reports:
     runs-on: ubuntu-latest

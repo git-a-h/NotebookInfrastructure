@@ -27,8 +27,7 @@ def create_notebooks(target_dir: str) -> list[str]:
         notebooks_converted.append(ipynb_file)
     return notebooks_converted
 
-
-if __name__ == "__main__":
+def main():
     print(
         "This script should collect all .py files that should be converted to notebooks"
     )
@@ -37,3 +36,7 @@ if __name__ == "__main__":
     )
     target_dir = sys.argv[1] if len(sys.argv) > 1 else "src"
     notebooks_converted = create_notebooks(target_dir)
+    return notebooks_converted
+
+if __name__ == "__main__":
+    main()
