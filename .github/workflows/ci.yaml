@@ -106,10 +106,12 @@ jobs:
       - name: Download coverage reports
         uses: actions/download-artifact@v4
         with:
+          path: .
           pattern: ".*-coverage"
+          merge-multiple: true
       - name: Combine coverage reports
         run: |
-          coverage combine .*-coverage
+          coverage combine ./*-coverage
           coverage html
         shell: micromamba-shell {0}
       - name: Upload coverage report artifact
