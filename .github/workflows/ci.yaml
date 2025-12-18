@@ -111,6 +111,7 @@ jobs:
           merge-multiple: true
       - name: Combine coverage reports
         run: |
+          ls -la
           coverage combine ./*-coverage
           coverage html
         shell: micromamba-shell {0}
