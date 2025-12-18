@@ -111,9 +111,7 @@ jobs:
           merge-multiple: true
       - name: Combine coverage reports
         run: |
-          ls -la
-          coverage combine ./*-coverage
-          coverage html
+          ./scripts/combine-coverage-reports.sh
         shell: micromamba-shell {0}
       - name: Upload coverage report artifact
         uses: actions/upload-artifact@v5
