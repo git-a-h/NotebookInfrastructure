@@ -39,12 +39,12 @@ jobs:
           cache-downloads: true
       - name: Run Tests with Coverage
         run: |
-          COVERAGE_FILE=.unit-coverage pytest --cov=src --cov=tests/unit tests/unit
+          pytest --cov . tests/unit
         shell: micromamba-shell {0}
       - name: Upload coverage report artifact
         uses: actions/upload-artifact@v4
         with:
-          name: .unit-coverage
+          name: .coverage
           path: .unit-coverage
           include-hidden-files: true
 
@@ -62,12 +62,12 @@ jobs:
           environment-file: etc/environment-tutorialtests.yml
       - name: Run Tests with Coverage
         run: |
-          COVERAGE_FILE=.tutorial-coverage pytest --cov=src --cov=tests/tutorial tests/tutorial
+          pytest --cov . tests/tutorial
         shell: micromamba-shell {0}
       - name: Upload coverage report artifact
         uses: actions/upload-artifact@v4
         with:
-          name: .tutorial-coverage
+          name: .coverage
           path: .tutorial-coverage
           include-hidden-files: true
 
