@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# Find all coverage files matching *-coverage pattern
-files=$(ls -a .coverage 2>/dev/null)
-echo $(ls -a)
+# Find all .coverage files 
+files=$(ls -a .*-coverage 2>/dev/null)
 
 if [ -e "$files" ]; then
   echo "No coverage files found."

@@ -38,12 +38,13 @@ jobs:
       - name: Run Tests with Coverage
         run: |
           pytest --cov . tests/unit
+          mv .coverage .unit-coverage
         shell: micromamba-shell {0}
       - name: Upload coverage report artifact
         uses: actions/upload-artifact@v4
         with:
           name: .unit-coverage
-          path: .coverage
+          path: .unit-coverage
           include-hidden-files: true
 
   run-smoke-tests:
@@ -59,12 +60,13 @@ jobs:
       - name: Run Tests with Coverage
         run: |
           pytest --cov . tests/tutorial
+          mv .coverage .tutorial-coverage
         shell: micromamba-shell {0}
       - name: Upload coverage report artifact
         uses: actions/upload-artifact@v4
         with:
           name: .tutorial-coverage
-          path: .coverage
+          path: .tutorial-coverage
           include-hidden-files: true
 
   upload-notebooks:
