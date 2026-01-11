@@ -4,9 +4,6 @@
 # First, we import all of the necessary packages. <br>
 # This is also nice to see that $\lambda$ works in markdown cell.
 
-# %%
-print("This is a test notebook for step 6")
-
 # %% [markdown]
 # Now, we will import the parallel sum function from step_6 and test it here
 
