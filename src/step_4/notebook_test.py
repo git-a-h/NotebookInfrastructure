@@ -6,4 +6,3 @@
 
 # %%
 print("This is a test notebook for step 3")
-
