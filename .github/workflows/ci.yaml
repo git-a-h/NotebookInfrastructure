@@ -85,7 +85,7 @@ jobs:
       - name: Run Tests with Coverage
         run: |
           pytest --cov . tests/tutorial/serial
-          mv .coverage .coverage.tutorial
+          mv .coverage .coverage.tutorial.serial
         shell: micromamba-shell {0}
       - name: Upload coverage report artifact
         uses: actions/upload-artifact@v4
