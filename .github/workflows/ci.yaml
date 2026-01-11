@@ -61,7 +61,7 @@ jobs:
           cache-downloads: true
       - name: Run Parallel Unit Tests with Coverage
         run: |
-          mpirun -np 4 coverage run -m pytest tests/unit/parallel
+          mpirun -np 2 coverage run -m pytest tests/unit/parallel
           coverage combine 
           mv .coverage .coverage.unit.parallel
         shell: micromamba-shell {0}
