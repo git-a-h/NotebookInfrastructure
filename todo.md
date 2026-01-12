@@ -35,10 +35,10 @@ For the first two tasks, the pySDC repository can serve as a reference. Ultimate
  - [x] Generate the notebooks in CI and output them as an artifact
 
 ## Task 6: Add MPI parallelism
- - [ ] Add a parallel module to your toy code. E.g. parallel sum
- - [ ] Test locally using multiple MPI ranks
- - [ ] Implement parallel unit test in GitHub CI 
+ - [x] Add a parallel module to your toy code. E.g. parallel sum
+ - [x] Test locally using multiple MPI ranks
+ - [x] Implement parallel unit test in GitHub CI 
  - [ ] Figure out a way to run the notebook tests in parallel
- - [ ] Write parallel smoke test for the notebook
+ - [x] Write parallel smoke test for the notebook
  - [ ] Implement parallel notebook tests in GitHub CI
- - [ ] Merge all coverage reports (Serial and parallel unit and notebook tests) into a single artifact
+ - [x] Merge all coverage reports (Serial and parallel unit and notebook tests) into a single artifact

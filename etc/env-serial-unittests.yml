@@ -1,0 +1,5 @@
+name: serial_unit_test_env
+channels:
+  - conda-forge
+dependencies:
+  - pytest-cov

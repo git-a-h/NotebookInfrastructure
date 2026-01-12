@@ -6,3 +6,5 @@ dependencies:
   - notebook
   - ipykernel
   - matplotlib
+  - openmpi
+  - mpi4py

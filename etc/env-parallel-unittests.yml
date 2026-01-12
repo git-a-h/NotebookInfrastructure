@@ -1,5 +1,7 @@
-name: unit_test_env
+name: parallel_unit_test_env
 channels:
   - conda-forge
 dependencies:
   - pytest-cov
+  - openmpi
+  - mpi4py
