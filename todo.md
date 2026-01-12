@@ -40,5 +40,5 @@ For the first two tasks, the pySDC repository can serve as a reference. Ultimate
  - [x] Implement parallel unit test in GitHub CI 
  - [ ] Figure out a way to run the notebook tests in parallel
  - [x] Write parallel smoke test for the notebook
- - [x] Implement parallel notebook tests in GitHub CI
- - [ ] Merge all coverage reports (Serial and parallel unit and notebook tests) into a single artifact
+ - [ ] Implement parallel notebook tests in GitHub CI
+ - [x] Merge all coverage reports (Serial and parallel unit and notebook tests) into a single artifact
