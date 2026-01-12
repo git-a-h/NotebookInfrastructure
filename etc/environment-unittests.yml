@@ -1,0 +1,5 @@
+name: unit_test_env
+channels:
+  - conda-forge
+dependencies:
+  - pytest-cov

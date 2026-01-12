@@ -1,0 +1,6 @@
+name: tutorial_tests_env
+channels:
+  - conda-forge
+dependencies:
+  - pytest-cov
+  - matplotlib

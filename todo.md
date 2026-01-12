@@ -29,9 +29,10 @@ For the first two tasks, the pySDC repository can serve as a reference. Ultimate
  - [x] Write an automatable smoke test for the tutorial. Try simply importing the tutorial python file, which should run all code in that file, in a test.
 
 ## Task 5: Implement the notebook tests in the GitHub CI
- - [ ] Add a task running the tutorial tests in parallel to the unit tests
- - [ ] Create an artifact with the merged coverage report
- - [ ] Generate the notebooks in CI and output them as an artifact
+ - [x] Add a task running the tutorial tests in parallel to the unit tests
+ - [x] Create an artifact with the merged coverage report
+ - [x] Write a script / command that scans a directory for .py files with prefix notebook*.py 
+ - [x] Generate the notebooks in CI and output them as an artifact
 
 ## Task 6: Add MPI parallelism
  - [ ] Add a parallel module to your toy code. E.g. parallel sum
