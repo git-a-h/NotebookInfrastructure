@@ -25,6 +25,7 @@ result = parallel_sum(xs)
 # Now, we add a cell, which tests the mpi parallism function and check if the size > 1
 
 # %%
-from mpi4py import MPI
-print (f'I am rank {MPI.COMM_WORLD.rank} of {MPI.COMM_WORLD.size}')
+from mpi4py import MPI  # noqa: E402
+
+print(f"I am rank {MPI.COMM_WORLD.rank} of {MPI.COMM_WORLD.size}")
 assert MPI.COMM_WORLD.size > 1
