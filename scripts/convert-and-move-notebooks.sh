@@ -13,6 +13,10 @@ fi
 find "$project_root/src" -type f -name "notebook*.py" | while read file; do
     # convert notebooks
     mpirun --stdin none -np 2 jupytext --to ipynb --execute "$file"
+    if [ $? -ne 0 ]; then
+        echo "MPI process failed for $file"
+        exit 1
+    fi
     # move to notebooks directory
     mv "${file%.py}.ipynb" "$output_dir"  
 done
